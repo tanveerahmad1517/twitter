@@ -25,26 +25,26 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     http://www.w3.org/International/questions/qa-personal-names
     """
-    username = models.CharField(_('username'), max_length=30, unique=True,
-                                help_text=_('Required. 30 characters or fewer. Letters, numbers and '
+    username = models.TextField(_('username'), unique=True,
+                                help_text=_('Required. 10 characters or fewer. Letters, numbers and '
                                             '@/./+/-/_ characters'),
                                 validators=[
                                     validators.RegexValidator(re.compile(
                                         '^[\w.@+-]+$'), _('Enter a valid username.'), 'invalid')
                                 ])
-    full_name = models.CharField(_('full name'), max_length=254, blank=False)
-    short_name = models.CharField(_('short name'), max_length=30, blank=True)
+    full_name = models.TextField(_('full name'), blank=False)
+    short_name = models.TextField(_('short name'), blank=True)
     choices = (('Male', 'Male'), ('Female', 'Female'))
-    sex = models.CharField(_('sex'), max_length=30, blank=False, choices=choices)
-    email = models.EmailField(_('email address'), max_length=254, unique=True)
-    phone_number = models.CharField(_('phone number'), max_length=20, validators=[
+    sex = models.TextField(_('sex'), blank=False, choices=choices)
+    email = models.TextField(_('email address'), max_length=10, unique=True)
+    phone_number = models.TextField(_('phone number'), validators=[
         validators.RegexValidator(re.compile(
             '^[0-9]+$'), _('Only numbers are allowed.'), 'invalid')
 
     ])
     user_choices = (('Driver', 'Driver'), ('Passenger', 'Passenger'))
-    user_type = models.CharField(_('user type'), max_length=30, blank=False, choices=user_choices)
-    address = models.TextField(_('location'), max_length=400, blank=False)
+    user_type = models.TextField(_('user type'), blank=False, choices=user_choices)
+    address = models.TextField(_('location'), blank=False)
 
     is_staff = models.BooleanField(_('staff status'), default=False,
                                    help_text=_('Designates whether the user can log into this admin '
@@ -147,12 +147,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
         return profile
 
-    # def no_of_rides_shared(self):
-    #     return self.vehiclesharing_set.filter(user=self, ended=True).count()
-
-    # def no_of_request_completed(self):
-    #     return self.request_set.filter(status='approved', user=self).count()
-
     def get_no_broadcast(self):
         return Broadcast.objects.filter(user=self).count()
 
@@ -161,71 +155,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
         return all_broad
 
-
-# class Vehicle(models.Model):
-#     year = models.IntegerField(_('year of purchase'), blank=False)
-#     make = models.CharField(_('vehicle make'), max_length=254, blank=False)
-#     plate = models.CharField(_('liscenced plate number'), max_length=10, blank=False)
-#     model = models.CharField(_('vehicle model'), max_length=254, blank=False)
-#     seats = models.IntegerField(_('no of seats'), blank=False)
-#     user_choices = (('private', 'private'), ('hired', 'hired'))
-#     type = models.CharField(_('vehicle type'), max_length=30, blank=False, choices=user_choices)
-#     user_choices = (('Car', 'Car'), ('Bus', 'Bus'), ('Coaster', 'Coaster'), ('Truck', 'Truck'))
-#     category = models.CharField(_('vehicle category'), max_length=30, blank=False, choices=user_choices)
-#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-
-#     def get_absolute_url(self):
-#         return "/app/ride/%d/view" % self.pk
-
-#     def __str__(self):
-#         return self.make + " " + self.model + " belonging to " + self.user.username
-
-
-# class VehicleSharing(models.Model):
-#     start = models.CharField(_('starting point'), max_length=256, blank=False, )
-#     dest = models.CharField(_('destination'), max_length=256, blank=False)
-#     cost = models.IntegerField(_('cost'), blank=False)
-#     date = models.DateField(_('date'), default=timezone.now)
-#     start_time = models.TimeField(_('start time'), max_length=256, blank=False)
-#     arrival_time = models.TimeField(_('estimated arrivak'), max_length=256, blank=False)
-#     no_pass = models.IntegerField(_('no of passengers'), blank=False)
-#     details = models.TextField(_('ride details'), blank=False)
-#     choices = (('Male', 'Male'), ('Female', 'Female'), ('Both', 'Both'))
-#     sex = models.CharField(_('gender preference'), max_length=30, blank=False, choices=choices)
-#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-#     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-#     ended = models.BooleanField(_('sharing ended'), default=False)
-
-#     def __str__(self):
-#         return self.start + " to " + self.dest
-
-#     def get_user(self):
-#         return self.user
-
-#     def get_absolute_url(self):
-#         return "/app/sharing/%d/view" % self.pk
-
-
-# class Request(models.Model):
-#     pick = models.CharField(_('pick up point'), max_length=256, blank=False, )
-#     dest = models.CharField(_('destination'), max_length=256, blank=False)
-#     reg_date = models.DateTimeField(_('registration date'), default=timezone.now)
-#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-#     bearable = models.IntegerField(_('bearable cost'), blank=False)
-#     status = models.CharField(_('status'), max_length=256, blank=False, default='pending')
-    # ride = models.ForeignKey(VehicleSharing, on_delete=models.CASCADE)
-
-    # def __str__(self):
-    #     return "request from " + self.user.get_full_name() + " on " + self.reg_date.isoformat(' ')[0:16]
-
-    # def get_absolute_url(self):
-    #     return "/app/request/%d/view" % self.pk
-
-
 class Message(models.Model):
     sender = models.ForeignKey(CustomUser, related_name='sender', on_delete=models.CASCADE)
     recipient = models.ForeignKey(CustomUser, related_name='recipient', on_delete=models.CASCADE)
-    subject = models.CharField(default='(No Subject)', max_length=256)
+    subject = models.TextField(default='(No Subject)')
     message = models.TextField(blank=False)
     date = models.DateTimeField(_('time sent'), default=timezone.now)
     read = models.BooleanField(_('read'), default=False)
@@ -272,12 +205,12 @@ class Follow(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, related_name='profile', on_delete=models.CASCADE, unique=True)
-    picture = CloudinaryField('picture', blank=True, default='user.png') 
+    # picture = CloudinaryField('picture', blank=True, default='user.png') 
     education = models.TextField(blank=True)
     work = models.TextField(blank=True)
-    social_facebook = models.CharField(max_length=256, blank=True)
-    social_twitter = models.CharField(max_length=256, blank=True)
-    social_instagram = models.CharField(max_length=256, blank=True)
+    social_facebook = models.TextField(blank=True)
+    social_twitter = models.TextField(blank=True)
+    social_instagram = models.TextField(blank=True)
     bio = models.TextField(blank=True)
     is_public = models.BooleanField(default=False)
 
@@ -291,7 +224,7 @@ def profile_delete(sender, instance, **kwargs):
 
 class DriverInfo(models.Model):
     driver = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    liscence_no = models.CharField(_('liscence number'), max_length=30, blank=False)
+    liscence_no = models.TextField(_('liscence number'), blank=False)
     date_issuance = models.DateField(_('date of first issuance'), blank=True)
     scanned = models.ImageField(_('picture of driver\'s liscence'), blank=True)
     confirmed = models.BooleanField(_('confirmed'), default=False)
