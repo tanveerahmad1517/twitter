@@ -205,7 +205,7 @@ class Follow(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, related_name='profile', on_delete=models.CASCADE, unique=True)
-    # picture = CloudinaryField('picture', blank=True, default='user.png') 
+    picture = CloudinaryField('picture', blank=True, default='user.png') 
     education = models.TextField(blank=True)
     work = models.TextField(blank=True)
     social_facebook = models.TextField(blank=True)

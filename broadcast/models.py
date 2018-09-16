@@ -145,7 +145,7 @@ class TextBroadcast(Broadcast):
 
 
 class ImageBroadcast(Broadcast):
-    # image = CloudinaryField('image', blank=True, default='user.png') 
+    image = CloudinaryField('image', blank=True, default='user.png') 
     description = models.TextField()
 
 @receiver(pre_delete, sender=ImageBroadcast)
