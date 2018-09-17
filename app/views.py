@@ -118,7 +118,7 @@ def login_user(request):
                 if user.last_login is None:
                     prof = Profile()
                     prof.user = user
-                    prof.picture.name = 'user.png'
+                    prof.picture = 'user.png'
                     prof.save()
                     login(request, user)
                     return redirect('app:index')
