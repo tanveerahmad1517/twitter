@@ -121,13 +121,13 @@ def login_user(request):
                     prof.picture = 'user.png'
                     prof.save()
                     login(request, user)
-                    return redirect('app:index')
+                    return redirect('broadcast:index')
                 login(request,user)
 
                 try:
                     return redirect(request.POST.get('next'),'/')
                 except Exception:
-                    return redirect('app:index')
+                    return redirect('broadcast:index')
             else:
                 return render(request, 'app/login.html', {'error_message': 'Your account is not enabled.\nyou need To verify your email'})
 
@@ -182,7 +182,7 @@ def contact(request):
 
 def do_login(request):
     if request.user.is_authenticated():
-        return redirect('app:index')
+        return redirect('broadcast:index')
 
     return render(request, 'app/login.html')
 

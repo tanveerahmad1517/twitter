@@ -175,6 +175,10 @@ USE_L10N = True
 USE_TZ = False
 
 
+
+
+LOGIN_REDIRECT_URL = '/'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 # Static files (CSS, JavaScript, Images)
@@ -214,5 +218,6 @@ EMAIL_USE_TLS = True
 
 import django_heroku
 django_heroku.settings(locals())
+
 
 
