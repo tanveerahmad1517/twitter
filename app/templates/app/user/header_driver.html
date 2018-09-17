@@ -23,18 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'app:dashboard' %}"><i class="fa fa-dashboard"></i>&nbsp;Dashboard<span class="sr-only">(current)</span></a></li>
                     <li><a href="{% url 'broadcast:index' %}"><i class="fa fa-bullhorn"></i>&nbsp;Broadcasts</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-road"></i>&nbsp;Actions <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'app:add_ride' request.user.id %}">Add Ride</a></li>
-                            <li><a href="{% url 'app:view_rides' request.user.id %}">View / Share Ride</a></li>
-                            <li><a href="{% url 'app:view_shared' request.user.id %}">View Shared Rides</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{% url 'app:search_ride' request.user.id %}">Search Ride</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{% url 'app:requests_user_view' request.user.id %}">View Requested Rides</a></li>
-                        </ul>
-                    </li>
+                    
                 </ul>
                 <form class="navbar-form navbar-left" action="{% url 'broadcast:search' %}">
             <input class="form-control" name=search type="text" placeholder="Search">
