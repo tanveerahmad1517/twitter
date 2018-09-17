@@ -22,6 +22,8 @@ class Broadcast(models.Model):
     bc_date = models.DateField(_('rebc date'),default=timezone.now)
     
     objects = InheritanceManager()
+
+    
     # def save(self, *args, **kwargs):
     #     super(Broadcast, self).save(*args, **kwargs)
     #     mentions = self.get_mentions()
@@ -59,6 +61,7 @@ class Broadcast(models.Model):
 
     def html_tags_edit(self):
         text = self.message
+        description = self.description
         attrs = {
             '*': ['class'],
             'a': ['href', 'rel'],
@@ -112,7 +115,8 @@ class Broadcast(models.Model):
         return '/broadcast/%d/view/' % self.pk
 
     def html_tags_edit(self):
-        text = self.content
+        text = self.message
+        description = self.description
         attrs = {
             '*': ['class'],
             'a': ['href', 'rel'],
@@ -142,11 +146,15 @@ class Broadcast(models.Model):
 
 class TextBroadcast(Broadcast):
     message = models.TextField()
+    class Meta:
+       ordering = ['message']
 
 
 class ImageBroadcast(Broadcast):
     image = CloudinaryField('image', blank=True, null=True) 
     description = models.TextField()
+    class Meta:
+       ordering = ['description']
 
 @receiver(pre_delete, sender=ImageBroadcast)
 def profile_delete(sender, instance, **kwargs):

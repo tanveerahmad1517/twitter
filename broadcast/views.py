@@ -336,8 +336,9 @@ def search(request):
         break
     
     search_data = TextBroadcast.objects.filter(message__icontains=query).order_by('-message')
+    search_dataa = ImageBroadcast.objects.filter(description__icontains=query).order_by('-description')
     people = CustomUser.objects.filter(Q(username__icontains=query) | Q(full_name__icontains=query) | Q(short_name__icontains=query))
-    return render(request, 'broadcast/search_results.html', {'search_data':search_data, 'query':query, 'search_profile':search_profile, 'people':people, 'trends':trends})
+    return render(request, 'broadcast/search_results.html', {'search_data':search_data, 'search_dataa':search_dataa, 'query':query, 'search_profile':search_profile, 'people':people, 'trends':trends})
     #We can differenitate here on the basis of the search query we have got like @ and # or any other textual query
 
 

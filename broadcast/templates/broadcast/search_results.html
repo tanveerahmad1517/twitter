@@ -52,6 +52,14 @@ asd
 							<p class="list-group-item-text responsive-image" style="word-wrap: break-word;"> {{chirp_data.message}}</p>
 						</li>
 						{% endfor %}
+						{% for chirp_data in search_dataa %}
+						<li class="list-group-item">
+						<h5 class="list-group-item-heading">
+							{{chirp_data.user.username}} <small class="text-muted">@{{chirp_data.user.username}} <a href="{{chirp_data.user.username}}/{{chirp_data.id}}">{{chirp_data.timestamp|timesince}}</a></small></h4>
+							<p class="list-group-item-text responsive-image" style="word-wrap: break-word;"> {{chirp_data.description}}</p></h5>
+							<img src="{{chirp_data.image.url}}"> 
+						</li>
+						{% endfor %}
 					</ul>
 			</div>
 		</div>
