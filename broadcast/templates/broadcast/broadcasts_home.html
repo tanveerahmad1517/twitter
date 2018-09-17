@@ -160,15 +160,7 @@
           <div class="box box-primary direct-chat direct-chat-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Who to Follow</h3>
-                <hr> 
-                <h3>  Hash Tags </h3>
-      <div class="card-block">
-        <ul class="list-group list-group-flush">
-          {% for trend in trends %}
-          <li class="list-group-item"><a href="/hashtag/search?search=%23{{trend.hasgtag|slice:"1:"}}">{{trend.hasgtag}}</a> <small>{{trend.chirp_count}} hashtag</small></li>
-          {% endfor %}
-        </ul>
-      </div>
+                
             </div>
             <!-- /.box-header -->
 
@@ -200,6 +192,7 @@
                     </a>
                   </li>
 
+
 {#                        {% endif %}#}
                   {% endfor %}
                   <!-- End Contact Item -->
@@ -207,14 +200,27 @@
                 <!-- Message to the right -->
 
                 <!-- /.direct-chat-msg -->
+
+
               </div>
+
               <!--/.direct-chat-messages-->
 
               <!-- /.direct-chat-pane -->
             </div>
 
-          </div>
 
+          </div>
+<div class="card-block">
+       
+                <h3>  Trends for you </h3>
+                <span> Hash Tag </span>
+        <ul class="list-group list-group-flush">
+          {% for trend in trends %}
+          <li class="list-group-item"><a href="/hashtag/search?search=%23{{trend.hasgtag|slice:"1:"}}">{{trend.hasgtag}}</a> <small>{{trend.chirp_count}} hashtag</small></li>
+          {% endfor %}
+        </ul>
+      </div>
                 </div>
                 <!-- /.col -->
             </div>
