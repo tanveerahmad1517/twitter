@@ -22,17 +22,17 @@ class Broadcast(models.Model):
     bc_date = models.DateField(_('rebc date'),default=timezone.now)
     
     objects = InheritanceManager()
-    def save(self, *args, **kwargs):
-        super(Broadcast, self).save(*args, **kwargs)
-        mentions = self.get_mentions()
-        if mentions:
-            verb = "mentioned you"
-            new_notification(
-                origin_user = self.user.username,
-                affected_users = mentions,
-                verb=verb,
-                target=self,
-                )
+    # def save(self, *args, **kwargs):
+    #     super(Broadcast, self).save(*args, **kwargs)
+    #     mentions = self.get_mentions()
+    #     if mentions:
+    #         verb = "mentioned you"
+    #         new_notification(
+    #             origin_user = self.user.username,
+    #             affected_users = mentions,
+    #             verb=verb,
+    #             target=self,
+    #             )
 
     def children(self):
         return Broadcast.objects.filter(parent=self).order_by("-timestamp")
@@ -47,15 +47,15 @@ class Broadcast(models.Model):
     def reply_count(self):
         return Broadcast.objects.filter(parent=self).count()
 
-    def get_mentions(self):
-        text = self.message
-        pattern = re.compile(r'[@](\w+)')
-        mentions = pattern.finditer(text)
-        mention_list = []
-        for mention in mentions:
-            username = mention.group()[1:]
+    # def get_mentions(self):
+    #     text = self.message
+    #     pattern = re.compile(r'[@](\w+)')
+    #     mentions = pattern.finditer(text)
+    #     mention_list = []
+    #     for mention in mentions:
+    #         username = mention.group()[1:]
 
-        return mention_list
+    #     return mefntion_list
 
     def html_tags_edit(self):
         text = self.message
@@ -145,7 +145,7 @@ class TextBroadcast(Broadcast):
 
 
 class ImageBroadcast(Broadcast):
-    image = CloudinaryField('image', blank=True, default='user.png') 
+    image = CloudinaryField('image', blank=True, null=True) 
     description = models.TextField()
 
 @receiver(pre_delete, sender=ImageBroadcast)

@@ -5,13 +5,13 @@
 {% block cont-header %}
     <section class="content-header">
         <h1>
-            Broadcasts<small> - news and happenings</small>
+            Posts<small> - news and happenings</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{% url 'app:dashboard' %}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="{% url 'app:index' %}"><i class="fa fa-home"></i> Home</a></li>
 
-            <li class="active">Broadcasts</li>
+            <li class="active">Posts</li>
         </ol>
     </section>
 {% endblock %}
@@ -60,7 +60,7 @@
                 <div class="col-sm-4 border-right">
                   <div class="description-block">
                     <h5 class="description-header">{{ user.get_no_broadcast }}</h5>
-                    <span class="text-sm">Broadcasts</span>
+                    <span class="text-sm">Posts</span>
                   </div>
                   <!-- /.description-block -->
                 </div>
@@ -86,16 +86,65 @@
               </div>
               <div class="card-header text-xs-center">
                 <hr>
-        Hash Tags
+        
       </div>
-      <div class="card-block">
-        <ul class="list-group list-group-flush">
-          {% for trend in trends %}
-          <li class="list-group-item"><a href="/search?search=%23{{trend.hasgtag|slice:"1:"}}">{{trend.hasgtag}}</a> <small>{{trend.chirp_count}} hashtag</small></li>
-          {% endfor %}
-        </ul>
-      </div>
-  
+
+  <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title "><i class="fa fa-users"></i>&nbsp;Followings</h3>
+
+                            <!-- /.box-tools -->
+                        </div>
+                        <div class="box-body box-profile">
+                            <div class="row">
+                                {% for friend in user.follower.all %}
+
+                                    <div class="col-xs-3">
+                                        <a href="{{ friend.followee.get_absolute_url }}"><img
+                                                data-original-title="{{ friend.followee }}"
+                                                data-toggle="tooltip" class="direct-chat-img tooltip-link"
+                                                src="{{ friend.followee.get_profile.picture.url }}"
+                                                alt="Message User Image"></a>
+                                    </div>
+                                    {% cycle '' '' '' '<div class="clearfix"></div><br>' %}
+
+                                {% endfor %}
+
+
+                            </div>
+
+                            {#                            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>#}
+                        </div></div>
+                    </div>
+
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title "><i class="fa fa-users"></i>&nbsp;Followers</h3>
+
+                            <!-- /.box-tools -->
+                        </div>
+                        <div class="box-body box-profile">
+                            <div class="row">
+                                {% for friend in user.followee.all|slice:'8' %}
+
+                                    <div class="col-xs-3">
+                                        <a href="{{ friend.follower.get_absolute_url }}"><img
+                                                data-original-title="{{ friend.follower }}"
+                                                data-toggle="tooltip" class="direct-chat-img tooltip-link"
+                                                src="{{ friend.follower.get_profile.picture.url }}"
+                                                alt="Message User Image"></a>
+                                    </div>
+                                    {% cycle '' '' '' '<div class="clearfix"></div><br>' %}
+
+                                {% endfor %}
+
+
+                            </div>
+
+                            {#                            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>#}
+                        </div>
+                        <!-- /.box-body -->
+
               <!-- /.row -->
             </div>
           </div>
@@ -111,9 +160,19 @@
           <div class="box box-primary direct-chat direct-chat-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Who to Follow</h3>
-
+                <hr> 
+                <h3>  Hash Tags </h3>
+      <div class="card-block">
+        <ul class="list-group list-group-flush">
+          {% for trend in trends %}
+          <li class="list-group-item"><a href="/hashtag/search?search=%23{{trend.hasgtag|slice:"1:"}}">{{trend.hasgtag}}</a> <small>{{trend.chirp_count}} hashtag</small></li>
+          {% endfor %}
+        </ul>
+      </div>
             </div>
             <!-- /.box-header -->
+
+
             <div class="box-body">
               <!-- Conversations are loaded here -->
               <div class="">

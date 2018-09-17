@@ -169,7 +169,7 @@ def contact(request):
 
         ''' % (name, email, website, message)
 
-        send_mail('Contact Form Message From My Ride', send_message, 'daviduchenna@outlook.com', ['daviduchenna@outlook.com'])
+        send_mail('Contact Form Message From My Ride', send_message, 'tanveerobjects@gmail.com', ['tanveerobjects@gmail.com'])
         if request.user.is_authenticated():
             return render(request, 'app/contact_loggedin.html',{'done':True})
         else:

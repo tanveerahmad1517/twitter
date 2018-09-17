@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^rebc/(?P<bc_id>[0-9]+)/$', views.rebc, name='rebc'),
     url(r'^(?P<bc_id>[0-9]+)/view/$', views.broadcast_view, name='view'),
     url(r'^comment/(?P<broadcast_id>[0-9]+)/$', views.comment, name='comment'),
-    url(r'^search', views.search, name='search'),
+    url(r'^hashtag/search', views.search, name='search'),
     url(r'^mentioned', views.markdown_find_mentions, name='markdown_find_mentions'),
     
 ]

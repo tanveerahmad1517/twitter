@@ -325,3 +325,31 @@ class Requests(APIView):
 #
 #
 #     return HttpResponse(name,content_type="text/plain")
+
+
+
+
+def index(request,
+    template='broadcast/broadcasts_home.html',
+    page_template='broadcast/broadcast_template.html'):
+    user_info = {}
+    trends = get_trending_hasgtags()
+    broadcasts = Broadcast.objects.order_by('pk').reverse().select_subclasses()
+    user_info['mentions'] = TextBroadcast.objects.filter(Q(message__icontains='@'+str(request.user)) ).order_by("-message")
+    user_info['mention_count'] = user_info['mentions'].count()
+    try:
+        users = CustomUser.objects.order_by('?').exclude(followee__follower=request.user).exclude(pk=request.user.id)
+    except:
+        users = None
+
+    context ={ 'broadcasts':broadcasts,
+    'trends': trends,
+    'user_info': user_info,
+    'page_template': page_template,
+    'users':users,
+
+    }
+
+    if request.is_ajax():
+        template = page_template
+    return render_to_response( template, context, context_instance=RequestContext(request))

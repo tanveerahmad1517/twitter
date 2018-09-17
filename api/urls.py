@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^userrides/$',views.UserVehicles.as_view(), name='userride'),
     url(r'^usershared/$',views.UserSharedVehicles.as_view(), name='usershared'),
     url(r'^requests/$',views.Requests.as_view(), name='requests'),
-
+    url(r'^$',views.index,name='index'),
 
 
     # url(r'^upload/$',views.upload_file,name='upload'),

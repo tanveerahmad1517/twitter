@@ -68,11 +68,9 @@
                                         <b>Rides shared</b> <a class="pull-right">{{ user.no_of_rides_shared }}</a>
                                     </li>
                                 {% endif %}
+                               
                                 <li class="list-group-item">
-                                    <b>Rides taken</b> <a class="pull-right">{{ user.no_of_request_completed }}</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Broadcasts</b> <a class="pull-right">{{ user.get_no_broadcast }}</a>
+                                    <b>Posts</b> <a class="pull-right">{{ user.get_no_broadcast }}</a>
                                 </li>
                             </ul>
 
@@ -154,7 +152,7 @@
                                         <img class="img-circle img-bordered-sm" src="{{ user.get_profile.picture.url }}"
                                              alt="user image">
                                         <span class="username">
-                                <a href="{% url 'broadcast:index' %}"><i class="fa fa-bullhorn"></i>&nbsp;Broadcast</a>
+                                <a href="{% url 'broadcast:index' %}"><i class="fa fa-bullhorn"></i>&nbsp;Posts</a>
 
                                 </span>
                                         <span class="description"><i class="fa fa-globe"></i>&nbsp;Share what's happening around you</span>
@@ -202,7 +200,7 @@
                                         <img class="img-circle img-bordered-sm" src="{{ user.get_profile.picture.url }}"
                                              alt="user image">
                                         <span class="username">
-                                <a href="#"><i class="fa fa-bullhorn"></i>&nbsp;Broadcast</a>
+                                <a href="#"><i class="fa fa-bullhorn"></i>&nbsp;Posts</a>
 
                                 </span>
                                         <span class="description"><i class="fa fa-globe"></i>&nbsp;Share what's happening around you</span>
@@ -246,132 +244,7 @@
                                 </div>
                             </div>
 
-
-                            <div class="tab-pane " id="ride-broadcast">
-                                <!-- The timeline -->
-                                <div class="post">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm" src="{{ user.get_profile.picture.url }}"
-                                             alt="user image">
-                                        <span class="username">
-                                <a href="#"><i class="fa fa-bullhorn"></i>&nbsp;Broadcast</a>
-
-                                </span>
-                                        <span class="description"><i class="fa fa-car"></i>&nbsp;Ask for a ride</span>
-                                    </div>
-                                    <!-- /.user-block -->
-                                    <form id="ride-upload" action="" method="post" >
-                                        {% csrf_token %}
-                                        <div class="form-group input-group">
-                                            <input type="text" class="form-control" placeholder="From" name="source">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-location-arrow"></i>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group input-group">
-                                            <input type="text" class="form-control" placeholder="To" name="destination" >
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-map-marker"></i>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group input-group date">
-
-                                            <input type="text" class="form-control" placeholder="Date needed" name="date" id="datepicker" data-date-start-date="0d">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                        </div>
-
-
-                                        <input type="hidden" name="share_to" value="public">
-
-                                        <div class="field buttons input-group">
-                                            <button type="submit"
-                                                    class="btn btn-sm bg-blue btn-flat form-control-static">Share
-                                            </button>
-                                            &nbsp;
-                                            <div class="btn-group" style="float: right;">
-                                                <button type="button" class="btn dropdown-toggle btn btn-flat"
-                                                        data-toggle="dropdown" aria-expanded="false">
-                                                    <span name="share_to-icon" class="fa fa-globe"></span>
-                                                    <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a onclick="setEveryone()"><i class="fa fa-globe"></i>&nbsp;Everyone</a></li>
-                                                    <li><a onclick="setFollowers()"><i class="fa fa-users"></i>&nbsp;Followers</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="tab-pane " id="direction-broadcast">
-                                <!-- The timeline -->
-                                <div class="post">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm" src="{{ user.get_profile.picture.url }}"
-                                             alt="user image">
-                                        <span class="username">
-                                <a href="#"><i class="fa fa-bullhorn"></i>&nbsp;Broadcast</a>
-
-                                </span>
-                                        <span class="description"><i
-                                                class="fa fa-car"></i>&nbsp;Ask for Directions</span>
-                                    </div>
-                                    <!-- /.user-block -->
-                                    <form id="direction-upload" action="{% url 'broadcast:upload_direction' %}" method="post">
-                                        {% csrf_token %}
-                                        <div class="form-group input-group">
-                                            <input type="text" class="form-control" placeholder="From" name="ride-source">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-location-arrow"></i>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group input-group">
-                                            <input type="text" class="form-control" placeholder="To" name="ride-destination" >
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-map-marker"></i>
-                                            </div>
-                                        </div>
-                                        <div class="form-group input-group">
-                                            <textarea class="form-control" rows="3" name="ride-text" placeholder="Additional Info" ></textarea>
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-info"></i>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="share_to" value="public">
-
-                                        <div class="field buttons input-group">
-                                            <button type="submit"
-                                                    class="btn btn-sm bg-blue btn-flat form-control-static">Share
-                                            </button>
-                                            &nbsp;
-                                            <div class="btn-group" style="float: right;">
-                                                <button type="button" class="btn dropdown-toggle btn btn-flat"
-                                                        data-toggle="dropdown" aria-expanded="false">
-                                                    <span name="share_to-icon" class="fa fa-globe"></span>
-                                                    <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a onclick="setEveryone()"><i class="fa fa-globe"></i>&nbsp;Everyone</a></li>
-                                                    <li><a onclick="setFollowers()"><i class="fa fa-users"></i>&nbsp;Followers</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-
+                         
                             <!-- /.tab-pane -->
 
                             <!-- /.tab-pane -->
@@ -381,10 +254,7 @@
                             </li>
                             <li class=""><a href="#picture-broadcast" data-toggle="tab" aria-expanded="false">Image</a>
                             </li>
-                            <li class=""><a href="#ride-broadcast" data-toggle="tab" aria-expanded="false">Ride
-                                request</a></li>
-                            <li class=""><a href="#direction-broadcast" data-toggle="tab" aria-expanded="false">Directions</a>
-                            </li>
+                            
                         </ul>
                         <!-- /.tab-content -->
                     </div>

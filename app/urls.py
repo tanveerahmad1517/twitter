@@ -3,7 +3,7 @@ from app import views
 
 app_name = 'app'
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^app/', views.IndexView.as_view(), name='index'),
     url(r'^accounts/login/$', views.login_user, name='login_user'),
 
     url(r'^signup/$', views.CreateUser.as_view(), name='sign_up'),

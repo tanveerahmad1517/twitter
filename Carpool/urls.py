@@ -10,12 +10,13 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     url(r'^admin/', include('smuggler.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^app/', include('app.urls')),
+    url(r'^', include('broadcast.urls')),
+    url(r'^', include('app.urls')),
     # url(r'^api/', include('api.urls')),
-    url(r'^broadcast/', include('broadcast.urls')),
-    url(r'^$', app.views.IndexView.as_view()),
+    
+    # url(r'^$', app.views.IndexView.as_view()),
     url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
-    url('', include('app.urls')),
+    # url('', include('app.urls')),
 
 
 ]

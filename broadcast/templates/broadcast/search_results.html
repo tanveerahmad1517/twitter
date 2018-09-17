@@ -13,7 +13,7 @@ asd
 			<div class="card-block">
 				<ul class="list-group list-group-flush">
 					{% for trend in trends %}
-					<li class="list-group-item"><a href="/broadcast/search?search=%23{{trend.hasgtag|slice:"1:"}}">{{trend.hasgtag}}</a> <small>{{trend.chirp_count}} chirps</small></li>
+		<li class="list-group-item"><a href="/hashtag/search?search=%23{{trend.hasgtag|slice:"1:"}}">{{trend.hasgtag}}</a> <small>{{trend.chirp_count}} chirps</small></li>
 					{% endfor %}
 				</ul>
 			</div>

@@ -3,6 +3,122 @@
 
 {% load el_pagination_tags %}
 {% paginate broadcasts %}
+
+<div class="tab-content">
+                            <div class="tab-pane active" id="text-broadcast">
+                                <!-- Post -->
+                                <div class="post">
+                                    <div class="user-block">
+                                        <img class="img-circle img-bordered-sm" src="{{ user.get_profile.picture.url }}"
+                                             alt="user image">
+                                        <span class="username">
+                                <a href="{% url 'broadcast:index' %}"><i class="fa fa-bullhorn"></i>&nbsp;Posts</a>
+
+                                </span>
+                                        <span class="description"><i class="fa fa-globe"></i>&nbsp;Share what's happening around you</span>
+                                    </div>
+                                    <!-- /.user-block -->
+                                    <form id="text-upload" method="post" action="{% url 'broadcast:upload_text' %}">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <textarea class="form-control" rows="4" name="text-text"></textarea>
+                                        </div>
+                                        <input id="share_to" type="hidden" name="share_to" value="public">
+
+                                        <div class="field buttons input-group">
+                                            <button type="submit"
+                                                    class="btn btn-sm bg-blue btn-flat form-control-static">Share
+                                            </button>
+                                            &nbsp;
+                                            <div class="btn-group" style="float: right;">
+                                                <button type="button" class="btn dropdown-toggle btn btn-flat"
+                                                        data-toggle="dropdown" aria-expanded="false">
+                                                    <span name="share_to-icon" class="fa fa-globe"></span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a onclick="setEveryone()" class="link"><i class="fa fa-globe"></i>&nbsp;Everyone</a></li>
+                                                    <li><a onclick="setFollowers()" class="link"><i class="fa fa-users"></i>&nbsp;Followers</a></li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <!-- /.post -->
+
+                                <!-- /.post -->
+                            </div>
+
+
+                            <!-- /.tab-pane -->
+                            <div class="tab-pane " id="picture-broadcast">
+                                <!-- The timeline -->
+                                <div class="post">
+                                    <div class="user-block">
+                                        <img class="img-circle img-bordered-sm" src="{{ user.get_profile.picture.url }}"
+                                             alt="user image">
+                                        <span class="username">
+                                <a href="#"><i class="fa fa-bullhorn"></i>&nbsp;Broadcast</a>
+
+                                </span>
+                                        <span class="description"><i class="fa fa-globe"></i>&nbsp;Share what's happening around you</span>
+                                    </div>
+                                    <!-- /.user-block -->
+                                    <form id="image-upload" action="{% url 'broadcast:upload_image' %}" method="post" enctype="multipart/form-data" >
+                                    {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="InputFile">Upload an Image</label>
+
+                                            <input type="file" id="InputFile" name="image-image" accept="image/*"/>
+
+                                            <p class="help-block">(Write a description below)</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <textarea class="form-control" rows="2" name="text-image"></textarea>
+                                        </div>
+                                        <input type="hidden" name="share_to" value="public">
+
+                                        <div class="field buttons input-group">
+                                            <button type="submit"
+                                                    class="btn btn-sm bg-blue btn-flat form-control-static">Share
+                                            </button>
+                                            &nbsp;
+                                            <div class="btn-group" style="float: right;">
+                                                <button type="button" class="btn dropdown-toggle btn btn-flat"
+                                                        data-toggle="dropdown" aria-expanded="false">
+                                                    <span name="share_to-icon" class="fa fa-globe"></span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a onclick="setEveryone()"><i class="fa fa-globe"></i>&nbsp;Everyone</a></li>
+                                                    <li><a onclick="setFollowers()"><i class="fa fa-users"></i>&nbsp;Followers</a></li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                         
+                            <!-- /.tab-pane -->
+
+                            <!-- /.tab-pane -->
+                        </div>
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#text-broadcast" data-toggle="tab" aria-expanded="true">Text</a>
+                            </li>
+                            <li class=""><a href="#picture-broadcast" data-toggle="tab" aria-expanded="false">Image</a>
+                            </li>
+                            
+                        </ul>
+                        <!-- /.tab-content -->
+             <br>
+
 {% for broad in broadcasts %}
     {% if broad.send_to_all %}
     <div class="box box-widget">

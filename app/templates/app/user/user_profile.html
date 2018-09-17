@@ -64,7 +64,7 @@
                                     <b>Rides taken</b> <a class="pull-right">{{ user.no_of_request_completed }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Broadcasts</b> <a class="pull-right">{{ user.get_no_broadcast }}</a>
+                                    <b>Posts</b> <a class="pull-right">{{ user.get_no_broadcast }}</a>
                                 </li>
 
                             </ul>
@@ -216,7 +216,7 @@
                 <div class="col-md-9">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Broadcasts</a>
+                            <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Posts</a>
                             </li>
                             {% if request.user.is_authenticated %}
                                 <li class=""><a href="#profile" data-toggle="tab" aria-expanded="false">Profile</a></li>
