@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1000"
+   height="689.58398"
+   viewBox="0 0 264.58333 182.45243"
+   version="1.1"
+   id="svg859"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="Twitter bird favicon.svg">
+  <defs
+     id="defs853" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="557.29384"
+     inkscape:cy="335.00433"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata856">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-114.54757)">
+    <path
+       style="fill:#33ccff;stroke-width:1.22451293"
+       inkscape:connector-curvature="0"
+       id="path25"
+       d="m 264.58333,198.70279 c -9.31119,1.5904 -22.81572,-0.0628 -29.97123,-3.04007 14.8688,-1.23112 24.93625,-7.98966 28.81552,-17.16521 -5.35912,3.29887 -22.00424,6.89169 -31.18481,3.46721 -0.45725,-2.1582 -0.95474,-4.21344 -1.45974,-6.07267 -6.98969,-25.73022 -30.96871,-46.46563 -56.07587,-43.95821 2.02506,-0.82155 4.07776,-1.58534 6.15306,-2.28129 2.74864,-0.98993 18.97669,-3.63808 16.42404,-9.35898 -2.16073,-5.04502 -21.98413,3.79384 -25.71264,4.95713 4.92696,-1.84667 13.07742,-5.0325 13.9442,-10.70315 -7.54494,1.03516 -14.9542,4.60788 -20.67513,9.80115 2.07028,-2.22354 3.63556,-4.93447 3.9672,-7.859 -20.13494,12.87893 -31.8958,38.82273 -41.40805,64.00774 -7.46957,-7.25351 -14.10752,-12.96437 -20.04448,-16.14265 -16.665226,-8.93433 -36.599187,-18.27068 -67.879467,-29.8984 -0.962284,10.35892 5.115407,24.14484 22.617273,33.29779 -3.78882,-0.51254 -10.723217,0.63563 -16.260715,1.95218 2.253678,11.88146 9.632834,21.65752 29.622056,26.38094 -9.132852,0.60051 -13.861324,2.69338 -18.13504,7.16558 4.158141,8.26102 14.321097,17.97171 32.571712,15.97431 -20.310825,8.76602 -8.283653,24.99154 8.243406,22.56952 C 69.957258,270.94639 25.519176,268.78317 0,244.42476 c 66.61565,90.87108 211.43955,53.73422 233.01163,-33.79023 16.18535,0.13044 25.67748,-5.60283 31.5717,-11.93174 z"
+       clip-path="none" />
+  </g>
+</svg>
