@@ -121,7 +121,7 @@ CORS_ALLOW_METHODS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mycarpoldb',
+        'NAME': 'test4',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
